@@ -2,11 +2,18 @@ package com.cadasreoDeNinjas.CadastroDeNinjas.Missoes;
 
 import com.cadasreoDeNinjas.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "tb_missao")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class MissoesModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,29 +22,5 @@ public class MissoesModel {
     private Rank dificuldade;
 
     @OneToMany(mappedBy = "missao")
-    private List<NinjaModel> ninjaModels;
-
-    public MissoesModel() {
-    }
-
-    public MissoesModel(String nome, Rank dificuldade) {
-        this.nome = nome;
-        this.dificuldade = dificuldade;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Rank getDificuldade() {
-        return dificuldade;
-    }
-
-    public void setDificuldade(Rank dificuldade) {
-        this.dificuldade = dificuldade;
-    }
+    private List<NinjaModel> ninjaModels = new ArrayList<>();
 }
